@@ -39,7 +39,7 @@ export class Contract {
     }
     return `${
       isGameOver ? "Game over, final score" : "Score"
-    }: ${score}. Points: ${totalPoints}.`;
+    }: ${score}. Points: ${totalPoints}`;
   }
 
   // --------------------------------------------------------------------------
