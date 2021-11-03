@@ -3,12 +3,10 @@ import { logging, RNG } from "near-sdk-core";
 @nearBindgen
 export class Yatzy {
   private DICE_AMOUNT: number;
-  private rng: RNG<u32>;
   private combinations: u32[];
 
   constructor() {
     this.DICE_AMOUNT = 5;
-    this.rng = new RNG<u32>(1, 6);
     this.combinations = [1, 2, 3, 4, 5, 6];
   }
 
@@ -57,8 +55,9 @@ export class Yatzy {
       "Previous turn is not finished yet, please choose the combination from 1 to 6 in which you want to include your results."
     );
     let newTurn = "";
+    const rng = new RNG<u32>(1, 6);
     for (let index = 0; index < this.DICE_AMOUNT; index++) {
-      newTurn = newTurn.concat(`${this.rng.next() + 1}`);
+      newTurn = newTurn.concat(`${rng.next() + 1}`);
     }
     logging.log(`throw dice result: ${newTurn.toString()}`);
     return newTurn;
