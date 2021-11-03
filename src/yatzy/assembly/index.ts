@@ -25,12 +25,21 @@ export class Contract {
     const array = this.points.split(",");
     let totalPoints = "";
     let score = 0;
+    let isGameOver = true;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
-      score += element === "" ? 0 : <i32>parseInt(element);
-      totalPoints += `${index + 1} - ${element === "" ? "0" : element};`;
+      if (element === "" || element === "0") {
+        isGameOver = false;
+      } else {
+        score += <u32>parseFloat(element);
+      }
+      totalPoints += `${index + 1} - ${
+        element === "" || element === "0" ? "0" : element
+      };`;
     }
-    return `Score: ${score}. Points: ${totalPoints}`;
+    return `${
+      isGameOver ? "Game over, final score" : "Score"
+    }: ${score}. Points: ${totalPoints}.`;
   }
 
   // --------------------------------------------------------------------------
