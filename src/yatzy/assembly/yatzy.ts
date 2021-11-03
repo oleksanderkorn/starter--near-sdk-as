@@ -2,9 +2,15 @@ import { logging, RNG } from "near-sdk-core";
 
 @nearBindgen
 export class Yatzy {
-  private DICE_AMOUNT: number = 5;
-  private rng: RNG<u32> = new RNG<u32>(1, 6);
-  private combinations: u32[] = [1, 2, 3, 4, 5, 6];
+  private DICE_AMOUNT: number;
+  private rng: RNG<u32>;
+  private combinations: u32[];
+
+  constructor() {
+    this.DICE_AMOUNT = 5;
+    this.rng = new RNG<u32>(1, 6);
+    this.combinations = [1, 2, 3, 4, 5, 6];
+  }
 
   how_to_play(): string {
     return "Players take turns rolling five dice. After each roll, the player chooses which dice to keep, and which to reroll. A player may reroll some or all of the dice up to two times on a turn. The player must put a score or zero into a score box each turn. The game ends when all score boxes are used. The player with the highest total score wins the game.";
